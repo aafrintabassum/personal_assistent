@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno AI Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="background"></canvas>
+    
+    <div class="container">
+        <div class="avatar-container">
+            <!-- Blue waves behind the image -->
+            <div class="waves-container">
+                <div class="wave wave1"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave3"></div>
+            </div>
+            
+            <!-- Bruno Image - 40% bigger (210px) -->
+            <div class="avatar">
+                <img id="avatarImg" src="aa.jpeg" alt="Bruno">
+            </div>
+        </div>
+        
+        <div class="speech-bubble" id="speechBubble">
+            <span id="responseText">Hey Aafuu! I am Bruno. How can I help you?</span>
+        </div>
+        
+        <div class="controls">
+            <button id="modeToggle">📝 Text</button>
+            <input type="text" id="textInput" placeholder="Type your message...">
+            <button id="voiceBtn">🎤</button>
+            <button id="sendBtn">Send</button>
+        </div>
+        
+        <div class="status" id="status">Ready</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

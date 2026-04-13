@@ -1,0 +1,282 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0d1b2a 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.avatar-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Avatar - CENTERED and bigger */
+.avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #00d4ff;
+    box-shadow: 
+        0 0 30px rgba(0, 212, 255, 0.6),
+        0 0 60px rgba(0, 212, 255, 0.4),
+        inset 0 0 30px rgba(0, 212, 255, 0.3);
+    position: relative;
+    z-index: 2;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.avatar:hover {
+    box-shadow: 
+        0 0 40px rgba(0, 212, 255, 0.8),
+        0 0 80px rgba(0, 212, 255, 0.5);
+}
+
+#avatarImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Amazing Blue Waves - CENTERED */
+.waves-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 212, 255, 0.8);
+}
+
+.wave1 {
+    animation: ripple 2.5s infinite ease-out;
+    border-color: rgba(0, 212, 255, 0.8);
+}
+
+.wave2 {
+    animation: ripple 2.5s infinite ease-out 0.8s;
+    border-color: rgba(0, 212, 255, 0.5);
+}
+
+.wave3 {
+    animation: ripple 2.5s infinite ease-out 1.6s;
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.wave4 {
+    animation: ripple 2.5s infinite ease-out 2.4s;
+    border-color: rgba(0, 212, 255, 0.15);
+}
+
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Glow effect */
+.avatar-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+    animation: glow 2s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes glow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* Speech bubble - SCROLLABLE */
+.speech-bubble {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 450px;
+    width: 90%;
+    min-height: 80px;
+    max-height: 200px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #00d4ff #1a1a3a;
+    text-align: center;
+}
+
+.speech-bubble::-webkit-scrollbar {
+    width: 6px;
+}
+
+.speech-bubble::-webkit-scrollbar-track {
+    background: #1a1a3a;
+}
+
+.speech-bubble::-webkit-scrollbar-thumb {
+    background: #00d4ff;
+    border-radius: 3px;
+}
+
+.speech-bubble.speaking {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.7);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    animation: bubble-pulse 0.5s ease-in-out;
+}
+
+@keyframes bubble-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+#responseText {
+    font-size: 16px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 500px;
+}
+
+#textInput {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 20px;
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+#textInput::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+#textInput:focus {
+    border-color: #00d4ff;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #00d4ff, #0099cc);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#voiceBtn.listening {
+    background: linear-gradient(135deg, #ff4757, #c0392b);
+    animation: pulse 0.8s infinite, shake 0.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+.status {
+    margin-top: 15px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 480px) {
+    .avatar { width: 160px; height: 160px; }
+    .waves-container { width: 220px; height: 220px; }
+    .controls { flex-direction: column; }
+    #textInput { width: 100%; }
+}
